@@ -51,8 +51,6 @@ var html = `<div>
    </div>`
 
 
-   
-
    function getMatches(regex, string) {
       let array = []
       while ((resultArray = regex.exec(string)) !== null) {
@@ -64,22 +62,13 @@ var html = `<div>
       return array;
    }
 
-
-
-   var sortKey = 0;
-   var trRegex =  /<tr>([\s\S]*?)<\/tr>/gm;
-   var trResults = getMatches(trRegex, html);
-
    function getSortDiv(tr) {
       var tdRegex = /<td[\s\S]*?>([\s\S]*?)<\/td>/gm;
       var tdResult = getMatches(tdRegex, tr);
       return tdResult[sortKey];
    }
 
-
-   trResultsWithoutHeader = trResults.slice(1);
-   trResultsWithoutHeader.sort((a,b) => {
-
+   function tdDivSort(a, b) {
       var trA = a;
       var trB = b;
 
@@ -95,40 +84,22 @@ var html = `<div>
       }
 
       return 0;
-   });
+   }
 
-   // trResultsWithoutHeader.reverse()
+
+   var sortKey = 0;
+   var asc = true;
+   var trRegex =  /<tr>([\s\S]*?)<\/tr>/gm;
+   var trResults = getMatches(trRegex, html);
+
+   trResultsWithoutHeader = trResults.slice(1);
+   trResultsWithoutHeader.sort(tdDivSort);
+   if(!asc) { trResultsWithoutHeader.reverse() }
 
    let finalResults = [trResults[0], ...trResultsWithoutHeader]
-   // finalResults.forEach(e => {
-   //    console.log('');
-   //    console.log('');
-   //    console.log('');
-   //    console.log('');
-   //    console.log('');
-   //    console.log('e: ', e);
-   // })
-
    let joinedTrs = finalResults.join();
    let tbodyRegex = /([\s\S]*?<tbody>)[\s\S]*?(<\/tbody>[\s\S]*)/gm;
-   // let newHtml = html.replace(tbodyRegex, '$1' + joinedTrs);
-
+   let newHtml = html.replace(tbodyRegex, (mystring, arg1, arg2) => arg1 + joinedTrs + arg2);
    // console.log('newHtml: ', newHtml);
-
-
-    let newHtml = html.replace(tbodyRegex, function(mystring, arg1, arg2){
-
-      // console.log('mystring: ', mystring);
-      // console.log('arg1: ', arg1);
-      // console.log('arg2: ', arg2);
-      // console.log('joinedTrs: ', joinedTrs);
-
-      return arg1 + joinedTrs + arg2;
-
-
-
-    })
-
-    console.log('newHtml: ', newHtml);
 
 
