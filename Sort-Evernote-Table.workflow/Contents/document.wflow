@@ -13,130 +13,6 @@
 		<dict>
 			<key>action</key>
 			<dict>
-				<key>AMActionVersion</key>
-				<string>1.2.1</string>
-				<key>AMApplication</key>
-				<array>
-					<string>TextEdit</string>
-				</array>
-				<key>AMParameterProperties</key>
-				<dict>
-					<key>enteredRTFDText</key>
-					<dict/>
-					<key>enteredText</key>
-					<dict/>
-				</dict>
-				<key>AMProvides</key>
-				<dict>
-					<key>Container</key>
-					<string>Single</string>
-					<key>Types</key>
-					<array>
-						<string>com.apple.cocoa.attributed-string</string>
-					</array>
-				</dict>
-				<key>AMRequiredResources</key>
-				<array/>
-				<key>ActionBundlePath</key>
-				<string>/System/Library/Automator/Get Specified Text.action</string>
-				<key>ActionName</key>
-				<string>Get Specified Text</string>
-				<key>ActionParameters</key>
-				<dict>
-					<key>enteredRTFDData</key>
-					<data>
-					cnRmZAAAAAADAAAAAgAAAAcAAABUWFQucnRm
-					AQAAAC4vAQAAKwAAAAEAAAAnAQAAe1xydGYx
-					XGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYx
-					NTA0XGNvY29hc3VicnRmODMwCntcZm9udHRi
-					bFxmMFxmc3dpc3NcZmNoYXJzZXQwIEhlbHZl
-					dGljYTt9CntcY29sb3J0Ymw7XHJlZDI1NVxn
-					cmVlbjI1NVxibHVlMjU1O30Ke1wqXGV4cGFu
-					ZGVkY29sb3J0Ymw7O30KXHBhcmRcdHg1NjBc
-					dHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAw
-					XHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0
-					MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJk
-					aXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3Iw
-					CgpcZjBcZnMyNCBcY2YwIEhpfQEAAAAjAAAA
-					AQAAAAcAAABUWFQucnRmEAAAAEDI+1q2AQAA
-					AAAAAAAAAAA=
-					</data>
-					<key>enteredRTFDText</key>
-					<string></string>
-					<key>enteredText</key>
-					<string>Hi</string>
-				</dict>
-				<key>BundleIdentifier</key>
-				<string>com.apple.GetSpecifiedText</string>
-				<key>CFBundleVersion</key>
-				<string>1.2.1</string>
-				<key>CanShowSelectedItemsWhenRun</key>
-				<false/>
-				<key>CanShowWhenRun</key>
-				<true/>
-				<key>Category</key>
-				<array>
-					<string>AMCategoryText</string>
-				</array>
-				<key>Class Name</key>
-				<string>AMGetSpecifiedTextAction</string>
-				<key>Keywords</key>
-				<array>
-					<string>Get</string>
-					<string>Text</string>
-				</array>
-				<key>OutputUUID</key>
-				<string>10F4F215-6331-43C3-969B-5A6F06948989</string>
-				<key>UUID</key>
-				<string>BA356FCE-5ADE-4FE4-97FA-6907B40052A4</string>
-				<key>UnlocalizedApplications</key>
-				<array>
-					<string>TextEdit</string>
-				</array>
-				<key>arguments</key>
-				<dict>
-					<key>0</key>
-					<dict>
-						<key>default value</key>
-						<string></string>
-						<key>name</key>
-						<string>enteredRTFDText</string>
-						<key>required</key>
-						<string>0</string>
-						<key>type</key>
-						<string>0</string>
-						<key>uuid</key>
-						<string>0</string>
-					</dict>
-					<key>1</key>
-					<dict>
-						<key>default value</key>
-						<string></string>
-						<key>name</key>
-						<string>enteredText</string>
-						<key>required</key>
-						<string>0</string>
-						<key>type</key>
-						<string>0</string>
-						<key>uuid</key>
-						<string>1</string>
-					</dict>
-				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
-				<key>isViewVisible</key>
-				<true/>
-				<key>location</key>
-				<string>328.500000:237.000000</string>
-				<key>nibPath</key>
-				<string>/System/Library/Automator/Get Specified Text.action/Contents/Resources/Base.lproj/main.nib</string>
-			</dict>
-			<key>isViewVisible</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>action</key>
-			<dict>
 				<key>AMAccepts</key>
 				<dict>
 					<key>Container</key>
@@ -175,66 +51,24 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>var sortKey = 0;
-var asc = true;
-
-
-function run(input, parameters) {
-
-   var evernote = Application('Evernote');
-   var note = evernote.notebooks.byName("Unsorted").notes.byId("x-coredata://D578A29C-EC81-49E3-8D08-CBE8BEBF8BE3/ENNote/p10315")
-		
-   var trRegex =  /&lt;tr&gt;([\s\S]*?)&lt;\/tr&gt;/gm;
-   var originalHtml = note.htmlContent();
-   var trResults = getMatches(trRegex, originalHtml);
-
-   trResultsWithoutHeader = trResults.slice(1);
-   trResultsWithoutHeader.sort(tdDivSort);
-   if(!asc) { trResultsWithoutHeader.reverse() }
-
-   var finalResults = [trResults[0], ...trResultsWithoutHeader]
-   var joinedTrs = finalResults.join();
-   var tbodyRegex = /([\s\S]*?&lt;tbody&gt;)[\s\S]*?(&lt;\/tbody&gt;[\s\S]*)/gm;
-   var newHtml = originalHtml.replace(tbodyRegex, (mystring, arg1, arg2) =&gt; arg1 + joinedTrs + arg2);
-   note.htmlContent = newHtml;
-		return input;}
-
-
-
-function getMatches(regex, string) {
-  let array = []
-  while ((resultArray = regex.exec(string)) !== null) {
-    // console.log('resultArray[0]: ', resultArray[0]);
-    // console.log('resultArray[1]: ', resultArray[1]);
-    array.push(resultArray[0])
-  }
-
-  return array;
-}
-
-function getSortDiv(tr) {
-  var tdRegex = /&lt;td[\s\S]*?&gt;([\s\S]*?)&lt;\/td&gt;/gm;
-  var tdResult = getMatches(tdRegex, tr);
-  return tdResult[sortKey];
-}
-
-function tdDivSort(a, b) {
-  var trA = a;
-  var trB = b;
-
-  var sortDivA = getSortDiv(trA);
-  var sortDivB = getSortDiv(trB);
-
-  if (sortDivA &lt; sortDivB) {
-      return -1;
-  }
-  
-  if (sortDivA &gt; sortDivB) {
-     return 1;
-  }
-
-  return 0;
-}</string>
+					<string>var sortKey;
+var columns = ['Name', 'Age', 'Job']function run(input, parameters) {	   sortKey = columns.indexOf(String(input));   var evernote = Application('Evernote');   var note = evernote.notebooks.byName("Unsorted").notes.byId("x-coredata://D578A29C-EC81-49E3-8D08-CBE8BEBF8BE3/ENNote/p10315")		   var trRegex =  /&lt;tr&gt;([\s\S]*?)&lt;\/tr&gt;/gm;   var originalHtml = note.htmlContent();   var trResults = getMatches(trRegex, originalHtml);   var trResultsWithoutHeader = trResults.slice(1);
+   var preSort = trResultsWithoutHeader.slice();   trResultsWithoutHeader.sort(tdDivSort);
+   var postSort = trResultsWithoutHeader.slice();
+   
+   //we are just going to toggle sort - if it matches asc, then go desc.  if it matches desc, then go asc
+   if(arraysAreEqual(preSort, postSort)) {
+      trResultsWithoutHeader.reverse()
+   }   var finalResults = [trResults[0], ...trResultsWithoutHeader]   var joinedTrs = finalResults.join();   var tbodyRegex = /([\s\S]*?&lt;tbody&gt;)[\s\S]*?(&lt;\/tbody&gt;[\s\S]*)/gm;   var newHtml = originalHtml.replace(tbodyRegex, (mystring, arg1, arg2) =&gt; arg1 + joinedTrs + arg2);   note.htmlContent = newHtml;		return input;}function arraysAreEqual(a1, a2) {
+	
+	for(var i = 0; i &lt; a1.length; i++) {
+		if(a1[i] !== a2[i]) {
+			return false;
+		}
+	}
+	
+	return true;
+}function getMatches(regex, string) {  let array = []  while ((resultArray = regex.exec(string)) !== null) {    // console.log('resultArray[0]: ', resultArray[0]);    // console.log('resultArray[1]: ', resultArray[1]);    array.push(resultArray[0])  }  return array;}function getSortDiv(tr) {  var tdRegex = /&lt;td[\s\S]*?&gt;([\s\S]*?)&lt;\/td&gt;/gm;  var tdResult = getMatches(tdRegex, tr);  return tdResult[sortKey];}function tdDivSort(a, b) {  var trA = a;  var trB = b;  var sortDivA = getSortDiv(trA);  var sortDivB = getSortDiv(trB);  if (sortDivA &lt; sortDivB) {      return -1;  }    if (sortDivA &gt; sortDivB) {     return 1;  }  return 0;}</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunJavaScript</string>
@@ -286,12 +120,10 @@ function tdDivSort(a, b) {
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>328.500000:816.000000</string>
+				<string>529.000000:969.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run JavaScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -300,15 +132,7 @@ function tdDivSort(a, b) {
 		</dict>
 	</array>
 	<key>connectors</key>
-	<dict>
-		<key>7E3882DB-BE73-4FED-B447-E98794846BB5</key>
-		<dict>
-			<key>from</key>
-			<string>BA356FCE-5ADE-4FE4-97FA-6907B40052A4 - BA356FCE-5ADE-4FE4-97FA-6907B40052A4</string>
-			<key>to</key>
-			<string>41899EF2-883E-4A4F-9955-D1B89BB24303 - 41899EF2-883E-4A4F-9955-D1B89BB24303</string>
-		</dict>
-	</dict>
+	<dict/>
 	<key>workflowMetaData</key>
 	<dict>
 		<key>serviceApplicationBundleID</key>
