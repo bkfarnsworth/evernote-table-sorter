@@ -87,7 +87,7 @@ var html = `<div>
    }
 
 
-   var sortKey = 0;
+   var sortKey = 1;
    var asc = true;
    var trRegex =  /<tr>([\s\S]*?)<\/tr>/gm;
    var trResults = getMatches(trRegex, html);
@@ -100,6 +100,6 @@ var html = `<div>
    let joinedTrs = finalResults.join();
    let tbodyRegex = /([\s\S]*?<tbody>)[\s\S]*?(<\/tbody>[\s\S]*)/gm;
    let newHtml = html.replace(tbodyRegex, (mystring, arg1, arg2) => arg1 + joinedTrs + arg2);
-   // console.log('newHtml: ', newHtml);
+   console.log('newHtml: ', newHtml);
 
 
